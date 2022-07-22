@@ -8,16 +8,19 @@ import {
 } from 'react-native';
 
 const NewsCard = ({ news }) => {
+  const {title, imgURL, price, inStock, u_id} = news;
   return (
+    
     <View >
       <View style={styles.cardRight}>
         <Image
           style={styles.imageCard}
-          source={{ uri: news.imgURL }}
+          source={{ uri: imgURL }}
           key={u_id}
         />
-        <Text style={styles.title}>{news.title}</Text>
-        <Text style={styles.price}>{news.price}</Text>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.price}>{price}</Text>
+        { !inStock && <Text style={styles.in_stock} >STOKTA YOK</Text>  }
       </View>
     </View>
   );
@@ -50,7 +53,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
     margin: 5,
 
-  }
+  },
+  in_stock: {
+    color: '#FF0000',
+    fontSize: 16,
+    textAlign: 'right',
+},
 
 });
 
